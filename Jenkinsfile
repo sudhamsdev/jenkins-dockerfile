@@ -18,6 +18,11 @@ pipeline{
                 }
             }
         }
+                stage('Scan Image') {
+            steps {
+                sh "trivy image --severity CRITICAL,HIGH ubuntunginx:${env.BUILD_NUMBER}"
+            }
+        }
         stage('Push to ECR') {
             steps {
                 script {
@@ -25,11 +30,6 @@ pipeline{
                     app.push("${env.BUILD_NUMBER}")
                     }
                 }
-            }
-        }
-        stage('Scan Image') {
-            steps {
-                sh "trivy image 438894829072.dkr.ecr.us-east-1.amazonaws.com/ubuntunginx:${env.BUILD_NUMBER}"
             }
         }
     }
