@@ -20,7 +20,7 @@ pipeline{
         }
                 stage('Scan Image') {
             steps {
-                sh "trivy image --severity CRITICAL,HIGH ubuntunginx:${env.BUILD_NUMBER}"
+                sh "trivy image ubuntunginx:${env.BUILD_NUMBER}"
             }
         }
         stage('Push to ECR') {
