@@ -30,7 +30,7 @@ pipeline {
         stage('Push to ECR') {
             steps {
                 script {
-                        docker.withRegistry('${ECR_NAME}', 'ecr:us-east-1:visualpathdemo01') {
+                        docker.withRegistry("${ECR_NAME}", 'ecr:us-east-1:visualpathdemo01') {
                     app.push("${env.BUILD_NUMBER}")
                     }
                 }
