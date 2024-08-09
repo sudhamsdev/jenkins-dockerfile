@@ -1,11 +1,11 @@
-pipeline{
+pipeline {
     agent any
-    options {
-        skipStagesAfterUnstable()
-    }
     parameters {
         string(name: 'REPO_NAME', defaultValue: 'ubuntunginx', description: 'Provide repository name to be pushed in ECR')
         string(name: 'ECR_NAME', defaultValue: 'https://438894829072.dkr.ecr.us-east-1.amazonaws.com', description: 'Provide ECR private URL')
+    }
+    options {
+        skipStagesAfterUnstable()
     }
     stages {
         stage('clone repo') {
